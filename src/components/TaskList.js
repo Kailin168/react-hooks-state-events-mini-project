@@ -10,7 +10,7 @@ function TaskList({itemsToDisplay}) {
       {itemsToDisplay.map((item) => {
         return (
           <div key={item.id}>
-            {item.text} {item.category}
+            To Do: {item.text} <br /> Category: {item.category}  <br />  <br /> 
             </ div>
         )
       }

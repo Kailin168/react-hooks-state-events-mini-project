@@ -10,11 +10,17 @@ console.log({ CATEGORIES, TASKS });
 function App() {
 
   const [categoriesName, setCategoriesName] = useState('All')
+  const [allItemsIncludingNewItem, setAllItemsIncludingNewItem] =useState(TASKS)
 
   function handleCatergoryChange (event) {
     setCategoriesName(event.target.value);
   }
-  const itemsToDisplay = TASKS.filter((item) => {
+
+function addToAllItems (incomingItem) {
+  setAllItemsIncludingNewItem([...allItemsIncludingNewItem, incomingItem])
+}
+
+  const itemsToDisplay = allItemsIncludingNewItem.filter((item) => {
     if (categoriesName === "All") { return true }
     else { return item.category === categoriesName }
   })
@@ -26,7 +32,7 @@ function App() {
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter  onCategoryChange={handleCatergoryChange} />
-      <NewTaskForm />
+      <NewTaskForm addToAllItems={addToAllItems} onCategoryChange={handleCatergoryChange}/>
       <TaskList itemsToDisplay={itemsToDisplay}/>
     </div>
   );
