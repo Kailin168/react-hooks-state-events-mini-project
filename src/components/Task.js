@@ -1,13 +1,19 @@
 import React from "react";
 
-function Task() {
+function Task({handleRemove, itemsToDisplay}) {
   return (
     <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
-    </div>
-  );
-}
+       {itemsToDisplay.map((item) => {
+        return (
+          <div key={item.id}>
+            <div className="label" >{item.category}</div>
+            <div className="text">{item.text}</div>
+            <button type="button" onClick={() => handleRemove(item)} >Remove</button>
+          </ div>
+        )
+      }
+      )}
+      </div>
+)}
 
 export default Task;
